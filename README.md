@@ -30,7 +30,7 @@ Permite crear, editar, archivar y eliminar notas.
 
 ## ⚙️ Instalación y ejecución
 
-### 1. Clonar el repositorio
+### 1. Clonar el repositorio y correr en el bash el start.sh
 ```bash
 git clone https://github.com/tu-usuario/notes-app.git
 cd notes-app

@@ -3,6 +3,7 @@
 Una aplicación web sencilla para gestionar notas, construida con **Spring Boot** en el backend y **React** en el frontend.  
 Permite crear, editar, archivar y eliminar notas.
 
+
 ---
 
 ## ✨ Características
@@ -40,3 +41,12 @@ git clone https://github.com/tu-usuario/notes-app.git
 cd notes-app
 
 ./start.sh
+```
+
+## 🚀 Futuras mejoras
+
+🔐 Autenticación de usuarios.
+
+🔍 Buscador de notas.
+
+🌙 Modo oscuro.

@@ -26,6 +26,10 @@ Permite crear, editar, archivar y eliminar notas.
 - JPA/Hibernate 
 - PostgreSQL (base de datos)  
 
+**Otras Herramientas**
+- Postman (prueba de los endpoints)
+- Docker (contenedor para correr la base de datos)
+
 ---
 
 ## ⚙️ Instalación y ejecución

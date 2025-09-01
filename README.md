@@ -12,7 +12,6 @@ Permite crear, editar, archivar y eliminar notas.
 - 📦 **Archivar / Desarchivar** notas.
 - 🗑️ **Eliminar notas** con confirmación mediante modal estilizado.
 - 🕒 Muestra **fecha de creación** y **última modificación** en cada nota.
-- 🎨 Interfaz responsive con un diseño simple y limpio.
 
 ---
 

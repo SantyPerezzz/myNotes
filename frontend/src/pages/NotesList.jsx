@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../services/api";
+import {getNotes, deleteNote, updateNote} from "../services/notesService";
 
 function NotesList() {
   const [notes, setNotes] = useState([]);
@@ -8,36 +8,36 @@ function NotesList() {
   const [showArchived, setShowArchived] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [noteToDelete, setNoteToDelete] = useState(null);
-  
-  const fetchNotes = (archived = false) => {
-    setLoading(true);
-    api.get(`/notes?archived=${archived}`)
-      .then((res) => {
-        setNotes(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  };
 
+  const fetchNotes = async () => {
+    setLoading(true);
+
+    try {
+      const data = await getNotes(showArchived);
+      setNotes(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+  
   useEffect(() => {
     fetchNotes(showArchived);
   }, [showArchived]);
 
   const handleDelete = (id) => {
-    api.delete(`/notes/${id}`)
+    deleteNote(id)
       .then(() => fetchNotes(showArchived))
       .catch((err) => console.error(err));
-  };
+  }
 
   const handleArchiveToggle = (note) => {
     const updatedNote = { ...note, archived: !note.archived };
-    api.put(`/notes/${note.id}`, updatedNote)
+    updateNote(note.id, updatedNote)
       .then(() => fetchNotes(showArchived))
       .catch((err) => console.error(err));
-  };
+  }
 
   if (loading) return <p className="text-center mt-5">Loading notes...</p>;
 

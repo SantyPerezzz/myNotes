@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import api from "../services/api";
+import { getNote, deleteNote } from "../services/notesService";
 
 function NoteDetail() {
   const { id } = useParams();
@@ -9,13 +9,13 @@ function NoteDetail() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    api.get(`/notes/${id}`)
-      .then(res => setNote(res.data))
+    getNote(id)
+      .then(data => setNote(data))
       .catch(err => console.error(err));
   }, [id]);
 
   const handleDelete = () => {
-    api.delete(`/notes/${id}`)
+    deleteNote(id)
       .then(() => navigate("/notes"))
       .catch(err => console.error(err));
   };

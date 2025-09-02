@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
+import { getNote, createNote, updateNote } from "../services/notesService";
 
 function NoteForm() {
   const { id } = useParams();
@@ -9,8 +10,8 @@ function NoteForm() {
 
   useEffect(() => {
     if (id) {
-      api.get(`/notes/${id}`)
-        .then(res => setNote(res.data))
+      getNote(id)
+        .then(data => setNote(data))
         .catch(err => console.error(err));
     }
   }, [id]);
@@ -25,12 +26,12 @@ function NoteForm() {
 
     if (id) {
       // Editar
-      api.put(`/notes/${id}`, note)
+      updateNote(id, note)
         .then(() => navigate("/notes"))
         .catch(err => console.error(err));
     } else {
       // Crear
-      api.post("/notes", note)
+      createNote(note)
         .then(() => navigate("/notes"))
         .catch(err => console.error(err));
     }
